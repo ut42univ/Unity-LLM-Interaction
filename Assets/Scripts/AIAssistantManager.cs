@@ -22,7 +22,7 @@ public class AIAssistantManager : MonoBehaviour
     [SerializeField] private UserProfile userProfile;
     
     private AudioClip _recordedClip;
-    private const string MicName = "MacBook Airのマイク"; //マイクデバイスの名前
+    private string _micName;
     private const int SamplingFrequency = 44100; //サンプリング周波数
     private const int MaxTimeSeconds = 10; //最大録音時間[s]
     
@@ -48,6 +48,17 @@ public class AIAssistantManager : MonoBehaviour
         stopButton.onClick.AddListener(async () => await StopRecording());
         
         SetUIByIsRecording();
+
+        // Set default microphone
+        if (Microphone.devices.Length > 0)
+        {
+            _micName = Microphone.devices[0];
+            Debug.Log("Default microphone set to: " + _micName);
+        }
+        else
+        {
+            Debug.LogError("No microphone devices found.");
+        }
     }
 
     private void StartRecording()
@@ -55,15 +66,15 @@ public class AIAssistantManager : MonoBehaviour
         Debug.Log("recording start");
         _isRecording = true;
         SetUIByIsRecording();
-        _recordedClip = Microphone.Start(deviceName: MicName, loop: false, lengthSec: MaxTimeSeconds, frequency: SamplingFrequency);
+        _recordedClip = Microphone.Start(deviceName: _micName, loop: false, lengthSec: MaxTimeSeconds, frequency: SamplingFrequency);
     }
 
     private async UniTask StopRecording()
     {
-        if (Microphone.IsRecording(deviceName: MicName))
+        if (Microphone.IsRecording(deviceName: _micName))
         {
             Debug.Log("recording stopped");
-            Microphone.End(deviceName: MicName);
+            Microphone.End(deviceName: _micName);
         }
         else
         {
@@ -93,7 +104,7 @@ public class AIAssistantManager : MonoBehaviour
     private async UniTask DisplayChatGPTResponse(string text)
     {
         ChatGPTResponseModel responseModel = await _chatConnection.RequestAsync(text, _token);
-        outputText.text += "先輩: " + responseModel.choices[0].message.content + Environment.NewLine;
+        outputText.text += "友達: " + responseModel.choices[0].message.content + Environment.NewLine;
         
         // 次の会話の前に1行開ける
         outputText.text += Environment.NewLine;
