@@ -15,6 +15,7 @@ namespace ChatGPTAPI
         private readonly string _apiKey;
         private readonly List<ChatGPTMessageModel> _messageList = new();
         private const string ApiUrl = "https://api.openai.com/v1/chat/completions";
+        public const string model = "gpt-4o-mini";
         
         public ChatGPTConnection(string apiKey)
         {
@@ -70,7 +71,7 @@ namespace ChatGPTAPI
 
             var options = new ChatGPTCompleteRequestModel()
             {
-                model = "gpt-4o-mini",
+                model = model,
                 messages = _messageList
             };
             var jsonOptions = JsonUtility.ToJson(options);

@@ -13,8 +13,6 @@ namespace Audio
         /// <summary>
         /// Wavファイルのデータ構造に変換する
         /// </summary>
-        /// <param name="audioClip"></param>
-        /// <returns></returns>
         public static byte[] ToWav(this AudioClip audioClip)
         {
             using var stream = new MemoryStream();
