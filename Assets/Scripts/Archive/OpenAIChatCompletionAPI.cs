@@ -29,7 +29,7 @@ public class OpenAIChatCompletionAPI
         string json = JsonConvert.SerializeObject(requestData, jsonSettings);
         byte[] data = System.Text.Encoding.UTF8.GetBytes(json);
 
-        using (var request = new UnityWebRequest(Credentials.OPENAI_API_URL, "POST"))
+        using (var request = new UnityWebRequest(Credentials.OPENAI_API_CHAT_URL, "POST"))
         {
             request.SetRequestHeader("Authorization", $"Bearer {Credentials.OPENAI_API_KEY}");
             request.SetRequestHeader("Content-Type", "application/json");

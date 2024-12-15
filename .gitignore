@@ -78,3 +78,6 @@ crashlytics-build.properties
 # User-specific files
 Credentials.cs
 Assets/Scripts/Credentials.cs.meta
+Constants.cs
+Assets/Scripts/Constants.cs.meta
+*.meta
