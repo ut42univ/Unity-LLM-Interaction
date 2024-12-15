@@ -26,7 +26,10 @@ namespace ChatGPTAPI
             var model = new ChatGPTMessageModel()
             {
                 role = Role.system.ToString(),
-                content = profile.systemContent
+                content = $"あなたの名前は{profile.nickName}です。" + 
+                          $"性別は{profile.sex}です。" +
+                          $"{profile.systemContent}"
+
             };
             AddMessage(model);
         }
@@ -39,19 +42,7 @@ namespace ChatGPTAPI
                 content = $"自己紹介をします！私の名前は{profile.nickName}です。" +
                           $"年齢は{profile.age}歳です。" +
                           $"性別は{profile.sex}です。" +
-                          $"生まれた場所は{profile.birthPlace}です。" +
-                          $"仕事は{profile.job}です。" + 
-                          $"今やっているタスクは{profile.currentTask}です。" +
-                          $"趣味は{profile.hobby}です。" +
-                          $"好きな食べ物は{profile.favoriteFood}です。" + 
-                          $"好きな色は{profile.favoriteColor}です。" +
-                          $"好きな動物は{profile.favoriteAnimal}です。" +
-                          $"好きな季節は{profile.favoriteSeason}です。" +
-                          $"好きなゲームは{profile.favoriteGame}です。" +
-                          $"好きな映画は{profile.favoriteMovie}です。" +
-                          $"好きな音楽は{profile.favoriteMusic}です。" +
-                          $"好きな本は{profile.favoriteBook}です。" +
-                          $"好きな場所は{profile.favoritePlace}です。"
+                          $"{profile.freeForm}"
             };
             AddMessage(model);
         }

@@ -8,18 +8,6 @@ namespace ChatGPTAPI.Config
         public string nickName;
         public string age;
         public string sex;
-        public string birthPlace;
-        public string job;
-        public string currentTask;
-        public string hobby;
-        public string favoriteFood;
-        public string favoriteColor;
-        public string favoriteAnimal;
-        public string favoriteSeason;
-        public string favoriteGame;
-        public string favoriteMovie;
-        public string favoriteMusic;
-        public string favoriteBook;
-        public string favoritePlace;
+        public string freeForm;
     }
 }
