@@ -16,5 +16,6 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         transform.position = Vector3.Lerp(this.transform.position, target.transform.position - diff, Time.deltaTime * followSpeed); //線形補間関数によるカメラの移動
+        transform.LookAt(target.transform); //ターゲットを常に注視する
     }
 }
