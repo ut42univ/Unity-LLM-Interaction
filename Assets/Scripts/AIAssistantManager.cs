@@ -9,6 +9,7 @@ using WhisperAPI.Models;
 using ChatGPTAPI;
 using ChatGPTAPI.Models;
 using ChatGPTAPI.Config;
+using TMPro;
 
 public class AIAssistantManager : MonoBehaviour
 {
